@@ -57,10 +57,22 @@ Each module's jar can be found in `build/libs/` inside each module's directory o
 Using EssentialsX in your plugin
 --------------------------------
 
-Do you want to integrate with EssentialsX in your plugin? EssentialsX is available on the **ender.zone Maven repository** at https://ci.ender.zone/plugin/repository/everything/.
+Do you want to integrate with EssentialsX in your plugin? You can use the EssentialsX Maven repo to build against EssentialsX's API.
 
-To depend on EssentialsX 2.18.2, you should use the artifact `net.ess3:EssentialsX:2.18.2`. You can find more information at the [wiki](https://essentialsx.net/wiki/Common-Issues.html#how-do-i-add-essentialsx-as-a-dependency).
+Releases are hosted on the Maven repo at `https://repo.essentialsx.net/releases/`, while snapshots (including dev builds) are hosted at `https://repo.essentialsx.net/snapshots/`.
 
+To add EssentialsX to your build system, you should use the following artifacts:
+
+| Type            | Group ID        | Artifact ID | Version         |
+| :-------------- | :-------------- | :---------- | :-------------- |
+| Older releases  | net.ess3        | EssentialsX | 2.18.2          |
+| Snapshots       | net.essentialsx | EssentialsX | 2.19.0-SNAPSHOT |
+| Future releases | net.essentialsx | EssentialsX | 2.19.0          |
+
+Note: up until `2.18.2`, EssentialsX used the `net.ess3` group ID, but starting with `2.19.0` snapshots, the group ID is now `net.essentialsx`.
+When updating your plugin, make sure you use the correct group ID.
+
+You can find more information and examples at the [wiki](https://essentialsx.net/wiki/Common-Issues.html#how-do-i-add-essentialsx-as-a-dependency).
 
 Contributing
 ------------
