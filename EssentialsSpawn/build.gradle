@@ -1,0 +1,10 @@
+dependencies {
+    implementation project(':EssentialsX')
+}
+
+shadowJar {
+    dependencies {
+        include (dependency('io.papermc:paperlib'))
+    }
+    relocate 'io.papermc.lib', 'com.earth2me.essentials.spawn.paperlib'
+}

@@ -40,12 +40,18 @@ If you need to report a bug or want to suggest a new feature, you can [open an i
 Building
 --------
 
-To build EssentialsX, you need JDK 8 or higher and Maven installed on your system. Then, run the following command:
+To build EssentialsX, you need JDK 8 or higher installed on your system. Then, run the following command:
 ```sh
-mvn clean install
+./gradlew build
 ```
 
-Each module's jar can be found in `target/` inside each module's directory.
+...or if you're on windows run the following command:
+
+```batch
+gradlew build
+```
+
+Each module's jar can be found in `build/libs/` inside each module's directory or in `jars/`.
 
 
 Using EssentialsX in your plugin
