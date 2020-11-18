@@ -174,7 +174,7 @@ public class SimpleMessageRecipient implements IMessageRecipient {
 
     /**
      * {@inheritDoc}
-     * <p/>
+     * <p>
      * <b>This {@link com.earth2me.essentials.messaging.SimpleMessageRecipient} implementation stores the a weak reference to the recipient.</b>
      */
     @Override
@@ -184,7 +184,7 @@ public class SimpleMessageRecipient implements IMessageRecipient {
 
     /**
      * {@inheritDoc}
-     * <p/>
+     * <p>
      * <b>This {@link com.earth2me.essentials.messaging.SimpleMessageRecipient} implementation stores the a weak reference to the recipient.</b>
      */
     @Override

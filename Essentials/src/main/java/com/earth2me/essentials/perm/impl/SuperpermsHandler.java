@@ -58,7 +58,7 @@ public class SuperpermsHandler implements IPermissionsHandler {
      * to respect default-false assignments. {@link org.bukkit.permissions.Permissible#isPermissionSet(String)}
      * will only return true for permissions that are set on an attachment, or that are a default that evaluates to true.
      * When resolving wildcards, we also want to detect permissions that are not in an attachment, but also won't evaluate
-     * to true for operators &em; since these are ones we've explicitly set to {@code false} in the {@code plugin.yml}</p>
+     * to true for operators &mdash; since these are ones we've explicitly set to {@code false} in the {@code plugin.yml}</p>
      *
      * <p>For the resolution itself, we check whether the permission is either set on the permissible or explicitly not
      * granted to ops (i.e. deviating from the default). If so, the permission's value is returned. Otherwise, the portion

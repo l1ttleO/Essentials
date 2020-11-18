@@ -5,23 +5,23 @@ import org.bukkit.plugin.Plugin;
 /**
  * Interface to be implemented by a payment method.
  * Copyright (C) 2011
- * AOL license <http://aol.nexua.org>
+ * AOL license &lt;http://aol.nexua.org&gt;
  * <p>
  * For more information about the licensing of this code in EssentialsX, see below:
- * https://gist.github.com/md678685/0935441c9573c030c8bd5a2e604aeec3
+ * https://gist.github.com/mdcfe/0935441c9573c030c8bd5a2e604aeec3
  *
- * @author Nijikokun <nijikokun@shortmail.com> (@nijikokun)
+ * @author Nijikokun &lt;nijikokun@shortmail.com&gt; (@nijikokun)
  */
 public interface Method {
     /**
      * Encodes the Plugin into an Object disguised as the Plugin. If you want the original Plugin Class you must cast it
      * to the correct Plugin, to do so you have to verify the name and or version then cast.
-     * <p/>
+     * <p>
      * <pre>
      *  if(method.getName().equalsIgnoreCase("iConomy"))
      *   iConomy plugin = ((iConomy)method.getPlugin());</pre>
      *
-     * @return <code>Object</code>
+     * @return {@link Object}!
      * @see #getName()
      * @see #getVersion()
      */

@@ -16,7 +16,7 @@ public interface IMessageRecipient {
 
     /**
      * This method is called when this {@link IMessageRecipient} is sending a message to another {@link IMessageRecipient}.
-     * <br />
+     * <p>
      * The {@link MessageResponse} that is returned is used to determine what exactly should happen in the {@link #sendMessage(IMessageRecipient,
      * String)} implementation by the {@code sender}.
      *
@@ -28,10 +28,10 @@ public interface IMessageRecipient {
 
     /**
      * This method is called when this recipient is receiving a message from another {@link IMessageRecipient}.
-     * <br />
+     * <p>
      * The {@link MessageResponse} that is returned is used to determine what exactly should happen in the {@link #sendMessage(IMessageRecipient,
      * String)} implementation by the {@code sender}.
-     * <p/>
+     * <p>
      * <b>This method should only be called by {@link #sendMessage(IMessageRecipient, String)}.</b>
      *
      * @param sender  sender of the {@code message}

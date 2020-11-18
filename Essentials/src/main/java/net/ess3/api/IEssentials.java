@@ -39,7 +39,7 @@ public interface IEssentials extends com.earth2me.essentials.IEssentials {
      * <b>Note: external plugins should generally avoid using this. If you want to add custom items from your plugin,
      * you probably want to implement your own {@link net.ess3.api.IItemDb.ItemResolver}.</b>
      *
-     * @return
+     * @return The custom item resolver
      */
     CustomItemResolver getCustomItemResolver();
 }

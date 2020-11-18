@@ -9,23 +9,25 @@ import java.util.Set;
 /**
  * The <code>Methods</code> initializes Methods that utilize the Method interface based on a "first come, first served"
  * basis.
- * <p/>
+ * <p>
  * Allowing you to check whether a payment method exists or not.
- * <p/>
+ * <p>
  * Methods also allows you to set a preferred method of payment before it captures payment plugins in the initialization
  * process.
- * <p/>
+ * <p>
  * in
  * <code>bukkit.yml</code>: <blockquote><pre>
  *  economy:
  *      preferred: "iConomy"
  * </pre></blockquote>
  * <p>
+ * Copyright (C) 2011
+ * AOL license &lt;http://aol.nexua.org&gt;
+ * <p>
  * For more information about the licensing of this code in EssentialsX, see below:
- * https://gist.github.com/md678685/0935441c9573c030c8bd5a2e604aeec3
+ * https://gist.github.com/mdcfe/0935441c9573c030c8bd5a2e604aeec3
  *
- * @author Nijikokun <nijikokun@shortmail.com> (@nijikokun) @copyright: Copyright (C) 2011 @license: AOL license
- * <http://aol.nexua.org>
+ * @author Nijikokun &lt;nijikokun@shortmail.com&gt; (@nijikokun)
  */
 public final class Methods {
     private static final Set<Method> Methods = new HashSet<>();
@@ -40,7 +42,7 @@ public final class Methods {
     }
 
     /**
-     * Implement all methods along with their respective name & class.
+     * Implement all methods along with their respective name &amp; class.
      */
     public static void init() {
         if (!Methods.isEmpty()) {
@@ -82,7 +84,7 @@ public final class Methods {
     /**
      * Returns an array of payment method names that have been loaded through the <code>_init</code> method.
      *
-     * @return <code>Set<String></code> - Array of payment methods that are loaded.
+     * @return Set of names of payment methods that are loaded.
      * @see #setMethod(PluginManager)
      */
     public static Set<String> getDependencies() {

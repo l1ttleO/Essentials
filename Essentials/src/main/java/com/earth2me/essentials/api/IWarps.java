@@ -44,7 +44,7 @@ public interface IWarps extends IConf {
      * Delete a warp from the warp DB
      *
      * @param name - Name of warp
-     * @throws Exception
+     * @throws Exception If the warp could not be removed
      */
     void removeWarp(String name) throws Exception;
 
@@ -53,7 +53,7 @@ public interface IWarps extends IConf {
      *
      * @param name - Name of warp
      * @param loc  - Location of warp
-     * @throws Exception
+     * @throws Exception If the warp could not be set
      */
     void setWarp(String name, Location loc) throws Exception;
 
@@ -63,7 +63,7 @@ public interface IWarps extends IConf {
      * @param user - User of warp
      * @param name - Name of warp
      * @param loc  - Location of warp
-     * @throws Exception
+     * @throws Exception If the warp could not be set
      */
     void setWarp(IUser user, String name, Location loc) throws Exception;
 
@@ -71,14 +71,14 @@ public interface IWarps extends IConf {
      * Gets Lastowner UUID
      *
      * @param warp - Name of warp
-     * @throws WarpNotFoundException
+     * @throws WarpNotFoundException If the warp is not found
      */
     UUID getLastOwner(String warp) throws WarpNotFoundException;
 
     /**
      * Check to see if the file is empty
      *
-     * @return
+     * @return Whether or not the file is empty
      */
     boolean isEmpty();
 
