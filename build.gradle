@@ -42,6 +42,7 @@ ext {
 subprojects {
     apply plugin: 'net.kyori.indra'
     apply plugin: 'net.kyori.indra.checkstyle'
+    apply plugin: 'net.kyori.indra.publishing'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     repositories {
@@ -83,38 +84,31 @@ subprojects {
                 'GNU General Public License version 3',
                 'https://opensource.org/licenses/GPL-3.0'
         )
-    }
 
-    // Deployment only
-    if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) {
-        apply plugin: 'net.kyori.indra.publishing'
+        publishReleasesTo('essx', 'https://repo.essentialsx.net/releases/')
+        publishSnapshotsTo('essx', 'https://repo.essentialsx.net/snapshots/')
 
-        indra {
-            publishReleasesTo('essx', 'https://repo.essentialsx.net/releases/')
-            publishSnapshotsTo('essx', 'https://repo.essentialsx.net/snapshots/')
-
-            configurePublications {
-                pom {
-                    description = 'The essential plugin suite for Minecraft servers.'
-                    url = 'https://essentialsx.net'
-                    developers {
-                        developer {
-                            id = 'mdcfe'
-                            name = 'MD'
-                            email = 'md@n3fs.co.uk'
-                        }
-                        developer {
-                            id = 'pop4959'
-                        }
-                        developer {
-                            id = 'JRoy'
-                            name = 'Josh Roy'
-                        }
+        configurePublications {
+            pom {
+                description = 'The essential plugin suite for Minecraft servers.'
+                url = 'https://essentialsx.net'
+                developers {
+                    developer {
+                        id = 'mdcfe'
+                        name = 'MD'
+                        email = 'md@n3fs.co.uk'
                     }
-                    ciManagement {
-                        system = 'Jenkins'
-                        url = 'https://ci.ender.zone/job/EssentialsX'
+                    developer {
+                        id = 'pop4959'
                     }
+                    developer {
+                        id = 'JRoy'
+                        name = 'Josh Roy'
+                    }
+                }
+                ciManagement {
+                    system = 'Jenkins'
+                    url = 'https://ci.ender.zone/job/EssentialsX'
                 }
             }
         }
