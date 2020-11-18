@@ -40,8 +40,6 @@ ext {
 }
 
 subprojects {
-    apply plugin: 'java'
-    apply plugin: 'java-library'
     apply plugin: 'net.kyori.indra'
     apply plugin: 'net.kyori.indra.checkstyle'
     apply plugin: 'com.github.johnrengelman.shadow'
@@ -79,17 +77,19 @@ subprojects {
     indra {
         checkstyle = "$checkstyleVersion"
 
-        // Deployment only
-        if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) {
-            apply plugin: 'net.kyori.indra.publishing'
-
-            github('EssentialsX', 'Essentials')
-            license = new License(
+        github('EssentialsX', 'Essentials')
+        license = new License(
                 'GPL-3.0-only',
                 'GNU General Public License version 3',
                 'https://opensource.org/licenses/GPL-3.0'
-            )
+        )
+    }
 
+    // Deployment only
+    if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) {
+        apply plugin: 'net.kyori.indra.publishing'
+
+        indra {
             publishReleasesTo('essx', 'https://repo.essentialsx.net/releases/')
             publishSnapshotsTo('essx', 'https://repo.essentialsx.net/snapshots/')
 
@@ -129,7 +129,6 @@ subprojects {
     javadoc {
         title = "${project.name} API (v${rootProject.ext.fullVersion})"
         options.links(
-                'https://docs.oracle.com/javase/8/docs/api/',
                 'https://hub.spigotmc.org/javadocs/spigot/'
         )
         options.addStringOption('Xdoclint:none', '-quiet')
