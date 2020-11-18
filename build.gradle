@@ -1,7 +1,9 @@
 plugins {
     id 'org.ajoberstar.grgit' version '4.1.0'
-    id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
+    id 'net.kyori.indra' version '1.0.2' apply false
+    id 'net.kyori.indra.checkstyle' version '1.0.2' apply false
     id 'net.kyori.indra.publishing' version '1.0.2' apply false
+    id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
     id 'java'
 }
 
@@ -28,16 +30,19 @@ ext {
     GIT_COMMIT = grgit.head().abbreviatedId
     GIT_DEPTH = commitsSinceLastTag()
 
-    fullVersion = "${version}+${GIT_DEPTH}.${GIT_COMMIT}".toString().replace("-SNAPSHOT", "")
+    fullVersion = "${version}+${GIT_DEPTH}.${GIT_COMMIT}".replace("-SNAPSHOT", "")
 
     checkstyleVersion = '8.36.2'
     spigotVersion = '1.16.4-R0.1-SNAPSHOT'
+    junit5Version = '5.7.0'
+    mockitoVersion = '3.2.0'
 }
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
-    apply plugin: 'checkstyle'
+    apply plugin: 'net.kyori.indra'
+    apply plugin: 'net.kyori.indra.checkstyle'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     repositories {
@@ -55,8 +60,9 @@ subprojects {
     }
 
     dependencies {
-        testImplementation 'junit:junit:4.13.1'
-        testImplementation 'org.mockito:mockito-core:3.2.0'
+        testImplementation "org.junit.jupiter:junit-jupiter:${junit5Version}"
+        testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junit5Version}"
+        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
 
         if (project.name != "1_8Provider" && project.name != "PaperProvider" && project.name != "NMSReflectionProvider") { // These providers use their own bukkit versions
             api "org.spigotmc:spigot-api:${spigotVersion}"
@@ -69,22 +75,13 @@ subprojects {
                 endToken: '}', tokens: ["full.version": fullVersion])
     }
 
-    // Checkstyle
-    checkstyle {
-        toolVersion = "${checkstyleVersion}"
-        configDirectory.set(rootProject.file(".checkstyle"))
+    indra {
+        checkstyle = "$checkstyleVersion"
     }
-    tasks.build.dependsOn tasks.checkstyleMain
 
-    // Versioning & Encoding
-    sourceCompatibility = '1.8'
-    compileJava.options.encoding = 'UTF-8'
-    tasks.withType(JavaCompile) {
-        options.encoding = 'UTF-8'
-        if (JavaVersion.current().isJava9Compatible()) {
-            options.release.set(8)
-        }
-    }
+    // undo https://github.com/KyoriPowered/indra/blob/master/indra-common/src/main/kotlin/net/kyori/indra/IndraPlugin.kt#L57
+    archivesBaseName = project.name
+
     tasks.withType(Jar) {
         archiveVersion.set(fullVersion)
     }

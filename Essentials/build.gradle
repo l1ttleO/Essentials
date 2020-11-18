@@ -25,8 +25,6 @@ shadowJar {
 }
 
 // Deployment only
-// TODO: figure this out
-/*
 if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) {
     apply plugin: "net.kyori.indra.publishing"
 
@@ -48,21 +46,6 @@ if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) 
                 'https://hub.spigotmc.org/javadocs/spigot/'
         )
         options.addStringOption('Xdoclint:none', '-quiet')
-    }
-
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        archiveClassifier.set('javadoc')
-        from javadoc.destinationDir
-    }
-
-    task sourcesJar(type: Jar) {
-        archiveClassifier.set('sources')
-        from sourceSets.main.allSource
-    }
-
-    artifacts {
-        archives javadocJar
-        archives sourcesJar
     }
 
     configurePublications {
@@ -93,4 +76,3 @@ if (project.hasProperty('essxUsername') && project.hasProperty('essxPassword')) 
         }
     }
 }
-*/
