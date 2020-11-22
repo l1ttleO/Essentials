@@ -35,6 +35,15 @@ public interface IAsyncTeleport {
     void now(Player entity, boolean cooldown, PlayerTeleportEvent.TeleportCause cause, CompletableFuture<Boolean> future);
 
     /**
+     * Used to skip all safety checks while teleporting a player asynchronously.
+     *
+     * @param loc    - Where should the player end up
+     * @param cause  - The reported teleportPlayer cause
+     * @param future - Future which is completed with the success status of the execution
+     */
+    void nowUnsafe(Location loc, PlayerTeleportEvent.TeleportCause cause, CompletableFuture<Boolean> future);
+
+    /**
      * Teleport a player to a specific location
      *
      * @param loc       - Where should the player end up

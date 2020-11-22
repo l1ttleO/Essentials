@@ -7,7 +7,6 @@ import com.earth2me.essentials.textreader.IText;
 import com.earth2me.essentials.textreader.KeywordReplacer;
 import com.earth2me.essentials.textreader.SimpleTextPager;
 import com.earth2me.essentials.utils.VersionUtil;
-import io.papermc.lib.PaperLib;
 import net.ess3.api.IEssentials;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -79,11 +78,12 @@ class EssentialsSpawnPlayerListener implements Listener {
                 if (ess.getSettings().isUserInSpawnOnJoinGroup(user) && !user.isAuthorized("essentials.spawn-on-join.exempt")) {
                     ess.scheduleSyncDelayedTask(() -> {
                         final Location spawn = spawns.getSpawn(user.getGroup());
-                        try {
-                            PaperLib.teleportAsync(user.getBase(), spawn, TeleportCause.PLUGIN);
-                        } catch (final Exception e) {
+                        final CompletableFuture<Boolean> future = new CompletableFuture<>();
+                        future.exceptionally(e -> {
                             ess.showError(user.getSource(), e, "spawn-on-join");
-                        }
+                            return false;
+                        });
+                        user.getAsyncTeleport().nowUnsafe(spawn, TeleportCause.PLUGIN, future);
                     });
                 }
             }

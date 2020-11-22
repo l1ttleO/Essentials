@@ -134,6 +134,13 @@ public class AsyncTeleport implements IAsyncTeleport {
         });
     }
 
+    @Override
+    public void nowUnsafe(Location loc, TeleportCause cause, CompletableFuture<Boolean> future) {
+        final CompletableFuture<Boolean> paperFuture = PaperLib.teleportAsync(teleportOwner.getBase(), loc, cause);
+        paperFuture.thenAccept(future::complete);
+        paperFuture.exceptionally(future::completeExceptionally);
+    }
+
     private void runOnMain(final Runnable runnable) throws ExecutionException, InterruptedException {
         if (Bukkit.isPrimaryThread()) {
             runnable.run();
