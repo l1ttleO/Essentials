@@ -1,5 +1,7 @@
 dependencies {
-    compileOnly 'com.github.milkbowl:VaultAPI:1.7'
+    compileOnly('com.github.milkbowl:VaultAPI:1.7') {
+        exclude group: "org.bukkit", module: "bukkit"
+    }
     compileOnly 'net.luckperms:api:5.0'
 
     api 'io.papermc:paperlib:1.0.6-SNAPSHOT'
@@ -7,9 +9,11 @@ dependencies {
     // Providers
     api project(':providers:BaseProviders')
     api project(':providers:PaperProvider')
-    api project(':providers:NMSReflectionProvider')
+    api(project(':providers:NMSReflectionProvider')) {
+        exclude group: "org.bukkit", module: "bukkit"
+    }
     api(project(':providers:1_8Provider')) {
-        exclude group: 'bukkit'
+        exclude group: "org.bukkit", module: "bukkit"
     }
 }
 

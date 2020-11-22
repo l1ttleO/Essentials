@@ -47,8 +47,6 @@ subprojects {
 
     repositories {
         mavenLocal()
-        mavenCentral()
-        maven { url = 'https://ci.ender.zone/plugin/repository/everything/' }
         maven { url = 'https://hub.spigotmc.org/nexus/content/groups/public/' }
         maven { url = 'https://papermc.io/repo/repository/maven-public/' }
         maven {
