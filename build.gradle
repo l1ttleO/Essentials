@@ -10,7 +10,6 @@ plugins {
     id 'net.kyori.indra.checkstyle' version "$indraVersion" apply false
     id 'net.kyori.indra.publishing' version "$indraVersion" apply false
     id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
-    id 'java'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
@@ -45,6 +44,7 @@ ext {
 }
 
 subprojects {
+    apply plugin: 'java'
     apply plugin: 'net.kyori.indra'
     apply plugin: 'net.kyori.indra.checkstyle'
     apply plugin: 'net.kyori.indra.publishing'
@@ -149,6 +149,12 @@ task cleanJars() {
     delete file('jars')
 }
 
-build.dependsOn copyToJars
-clean.dependsOn cleanJars
+task clean() {
+    dependsOn cleanJars
+}
+
+task build() {
+    dependsOn copyToJars
+}
+
 copyToJars.dependsOn tasks.findByPath(":EssentialsX:processResources")
