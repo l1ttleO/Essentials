@@ -1,14 +1,19 @@
+buildscript  {
+    ext {
+        indraVersion = '1.2.1'
+    }
+}
+
 plugins {
     id 'org.ajoberstar.grgit' version '4.1.0'
-    id 'net.kyori.indra' version '1.0.2' apply false
-    id 'net.kyori.indra.checkstyle' version '1.0.2' apply false
-    id 'net.kyori.indra.publishing' version '1.0.2' apply false
+    id 'net.kyori.indra' version "$indraVersion" apply false
+    id 'net.kyori.indra.checkstyle' version "$indraVersion" apply false
+    id 'net.kyori.indra.publishing' version "$indraVersion" apply false
     id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
     id 'java'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
-import net.kyori.indra.data.License
 
 allprojects {
     group = 'net.essentialsx'
@@ -77,11 +82,7 @@ subprojects {
         checkstyle = "$checkstyleVersion"
 
         github('EssentialsX', 'Essentials')
-        license = new License(
-                'GPL-3.0-only',
-                'GNU General Public License version 3',
-                'https://opensource.org/licenses/GPL-3.0'
-        )
+        gpl3OnlyLicense()
 
         publishReleasesTo('essx', 'https://repo.essentialsx.net/releases/')
         publishSnapshotsTo('essx', 'https://repo.essentialsx.net/snapshots/')
@@ -109,12 +110,6 @@ subprojects {
                     url = 'https://ci.ender.zone/job/EssentialsX'
                 }
             }
-        }
-    }
-
-    tasks.withType(Sign) {
-        onlyIf {
-            (project.hasProperty("forceSign") || gradle.taskGraph.hasTask(':publish')) && !project.version.endsWith('-SNAPSHOT')
         }
     }
 
