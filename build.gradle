@@ -59,7 +59,7 @@ subprojects {
 
     dependencies {
         testImplementation "org.junit.jupiter:junit-jupiter:${junit5Version}"
-        testRuntimeOnly "org.junit.vintage:junit-vintage-engine:${junit5Version}"
+        testImplementation "org.junit.vintage:junit-vintage-engine:${junit5Version}"
         testImplementation "org.mockito:mockito-core:${mockitoVersion}"
 
         if (project.name != "1_8Provider" && project.name != "PaperProvider" && project.name != "NMSReflectionProvider") { // These providers use their own bukkit versions
